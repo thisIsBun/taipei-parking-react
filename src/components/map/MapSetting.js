@@ -12,8 +12,8 @@ export const MarkerWrapper = styled.div`
 `
 
 export const Icon = styled.img`
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 `
 
 export const Text = styled.div`
@@ -21,13 +21,15 @@ export const Text = styled.div`
   width: auto;
   height: auto;
   display: inline-block;
-  padding: 8px;
+  padding: 0.5rem;
   font-weight: bold;
-  border-radius: 5px;
-  background-color: #00C300;
-  color: #ffffff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #06C705;
   transition: all 0.5s;
   &:hover {
     transform: scale(1.2);
   }
 `
+

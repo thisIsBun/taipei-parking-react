@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Map from './components/map'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocation } from './redux/travelSlice'
+import { setLocation, getParkLocationAsync } from './redux/travelSlice'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,8 +13,11 @@ export const Wrapper = styled.div`
 `
 
 const App = () => {
+  
   const [centerLocation, setCenterLocation] = useState()
+
   const myLocaition = useSelector(state => state.location.myLocaition)
+  const parkLocation = useSelector(state => state.location.location[0])
 
   const dispatch = useDispatch() //用 useDispatch產生 dispatch方法
 
@@ -22,12 +25,14 @@ const App = () => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
       dispatch(setLocation({ lat: latitude, lng: longitude }))
     });
+    dispatch(getParkLocationAsync())
   }, [dispatch])
 
   return(
     <Wrapper>
       {myLocaition.lng !== 0 && 
       <Map 
+      renderMap={parkLocation} 
       centerLocation={centerLocation ? centerLocation : myLocaition} 
       />}
     </Wrapper>
