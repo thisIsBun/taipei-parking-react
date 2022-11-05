@@ -33,7 +33,8 @@ export default function Map ({ renderMap, centerLocation}) {
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
         defaultCenter={centerLocation}
-        defaultZoom={16}
+        defaultZoom={15}
+        center={centerLocation}
       >
         <MyMarker
           lat={myLocation.lat}
