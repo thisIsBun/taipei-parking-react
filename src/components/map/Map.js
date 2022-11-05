@@ -23,7 +23,7 @@ export default function Map ({ renderMap, centerLocation}) {
   const ParkingMarker = ({text}) =>(
       <MarkerWrapper>
         <Icon src={parkingmarker} />
-        <Text>{text}</Text>
+        {/* <Text>{text}</Text> */}
       </MarkerWrapper>
   )
 
@@ -33,7 +33,7 @@ export default function Map ({ renderMap, centerLocation}) {
       <GoogleMapReact
         bootstrapURLKeys={{ key: API_KEY }}
         defaultCenter={centerLocation}
-        defaultZoom={15}
+        defaultZoom={16}
       >
         <MyMarker
           lat={myLocation.lat}
