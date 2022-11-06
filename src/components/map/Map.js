@@ -43,10 +43,11 @@ export default function Map ({ renderMap, centerLocation}) {
     </MarkerWrapper>
   )
 
-  const ParkingMarker = ({colorRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee}) =>(
+  const ParkingMarker = ({fullRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee}) =>(
 
     <MarkerWrapper
     onClick={showModal}
+    style={{width: '25px', height: '25px', cursor: 'pointer'}} 
     >
       <ParkingModal
         id={id}
@@ -64,9 +65,9 @@ export default function Map ({ renderMap, centerLocation}) {
         variant="primary" 
         onClick={handleShow}
         xmlns="http://www.w3.org/2000/svg" 
-        style={{width: '25px', height: '25px', cursor: 'pointer'}} 
+        // style={{width: '25px', height: '25px', cursor: 'pointer'}} 
         viewBox="0 0 20 20" 
-        fill={colorRation === 0 || null ? '#06C755' : `rgb(6,${ 0 + colorRation*2 },85)`}>
+        fill={fullRation === 0 || null ? '#06C755' : `rgb(6,${ 0 + fullRation*2 },85)`}>
 
         <path 
         fillRule="evenodd" 
@@ -103,14 +104,14 @@ export default function Map ({ renderMap, centerLocation}) {
               lat={location.lat}
               lng={location.lng}
               key={station.id}
-              colorRation={station.colorRatio}
+              fullRation={station.fullRatio}
               id={station.id}
               name={station.name}
               area={station.area}
               address={station.address}
               tel={station.tel}
               fee={station.payex}
-              servieTime={station.serviceTime}
+              serviceTime={station.serviceTime}
               totalcar={station.totalcar}
               availablecar={station.availablecar}
               payex={station.payex}
@@ -138,8 +139,9 @@ function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availabl
           <p>費用：{fee}</p>
           <p>可停車位：{availablecar}</p>
           <p>總共車位：{totalcar}</p>
-          <p>地址：台北市 {area} {address}</p>
-          <p>電話：{tel}</p>
+          <p>台北市行政區：{area}</p>
+          <p>地址：{address}</p>
+          <p>電話：{tel ? tel : 'N/A'}</p>
           <p>營業時間：{serviceTime ? serviceTime : 'N/A'}</p>
         </Modal.Body>
       </Modal>

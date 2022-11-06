@@ -33,3 +33,8 @@ export const MapWrapper = styled.div`
   margin: 0;
   padding: 0;
 `
+
+export const P = styled.div`
+  font-size: 14px;
+  margin: 0;
+`

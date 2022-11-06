@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import Map from './components/map'
-import { HeaderWrapper, Button, MapWrapper} from './AppSetting'
+import { HeaderWrapper, Button, MapWrapper, P} from './AppSetting'
 import { useSelector, useDispatch } from 'react-redux';
 import { setLocation, getParkLocationAsync, getParkIdAsync } from './redux/travelSlice'
 
@@ -29,13 +29,15 @@ const App = () => {
   let ParkAvailable = []
   if (Array.isArray(parkLocation) && Array.isArray(locationAvailable)) {
     const result = Array.from(locationAvailable);
+
     parkLocation.forEach(el => {
       let item = result.find(x => x.id === el.id);
-      if (item && item.availablecar > 0) {
+
+      if (item && item.availablecar > 0 && el.totalcar > 0) {
           item = {
             ...item,
             ...el,
-            colorRatio: Math.ceil((item.availablecar / el.totalcar)*100)
+            fullRatio: (item.availablecar / el.totalcar)*100 <= 100 ? Math.ceil((item.availablecar / el.totalcar)*100) : 100
           }
         ParkAvailable.push(item)
       } else {
@@ -52,7 +54,10 @@ const App = () => {
           <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>顯示全部停車場</Button>
           <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>僅顯示有位停車場</Button>
         </div>
-        <p className='my-0'>更新時間：{updateTime}</p>
+        <div className='d-flex flex-column'>
+          <P className={isCheck ? "font-weight-bold" : "d-none"}>Marker 顏色越淺 = 剩越多停車位</P>
+          <P>更新時間：{updateTime}</P>
+        </div>
       </HeaderWrapper>
 
       <MapWrapper>
