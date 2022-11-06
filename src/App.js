@@ -42,23 +42,12 @@ const App = () => {
 
   return(
     <>
-      {/* <label 
-      htmlFor='onlyAvailavle' 
-      >僅顯示有位
-      </label>
-      <input 
-      type='checkbox' 
-      id='onlyAvailavle' 
-      checked={isCheck} 
-      onClick={() => { setIsCheck(!isCheck) }} 
-      onChange={() => { setIsCheck(!isCheck) }} 
-      /> */}
-
       <HeaderWrapper className='d-flex align-items-center'>
-        <h1 className='font-bold text-4xl mx-4 my-2 text-blue-400'>台北停車圖鑑</h1>
-        <Button onClick={() => { setIsCheck(!isCheck) }} >
-          { isCheck ? "顯示全部停車場" : "僅顯示有位停車場"}
-        </Button>
+        <h1 className='mx-4 my-2'>台北停車圖鑑</h1>
+        <div className='d-flex mx-4'>
+          <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>顯示全部停車場</Button>
+          <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>僅顯示有位停車場</Button>
+        </div>
       </HeaderWrapper>
 
       <MapWrapper>

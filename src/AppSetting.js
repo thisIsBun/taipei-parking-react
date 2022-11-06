@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const HeaderWrapper = styled.div`
+  border-bottom: 1px solid #000000;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,13 +12,19 @@ export const HeaderWrapper = styled.div`
 `
 
 export const Button = styled.div`
-  background-color: #06C755;
-  color: #ffffff;
-  padding: 8px 16px;
+  
+  color: #000000;
+  padding: 6px 10px;
   cursor: pointer;
-  border-radius: 8px;
+  // border-radius: 8px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
+  width: 160px;
+  text-align: center;
+  border: 2px solid #06C755;
+  &.active {
+    background-color: #06C755;
+  }
 `
 
 export const MapWrapper = styled.div`
