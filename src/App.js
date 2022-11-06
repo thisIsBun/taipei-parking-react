@@ -21,6 +21,9 @@ const App = () => {
   const myLocaition = useSelector(state => state.location.myLocaition)
   const parkLocation = useSelector(state => state.location.location[0])
   const locationAvailable = useSelector(state => state.location.locationAvailable[0])
+  const updateTime = useSelector(state => state.location.updateTime)
+
+  console.log(updateTime)
 
   // 目前有停車位的停車場
   let ParkAvailable = []
@@ -28,10 +31,11 @@ const App = () => {
     const result = Array.from(locationAvailable);
     parkLocation.forEach(el => {
       let item = result.find(x => x.id === el.id);
-      if (item) {
+      if (item && item.availablecar > 0) {
           item = {
             ...item,
-            ...el
+            ...el,
+            colorRatio: Math.ceil((item.availablecar / el.totalcar)*100)
           }
         ParkAvailable.push(item)
       } else {
@@ -48,6 +52,7 @@ const App = () => {
           <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>顯示全部停車場</Button>
           <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>僅顯示有位停車場</Button>
         </div>
+        <p className='my-0'>更新時間：{updateTime}</p>
       </HeaderWrapper>
 
       <MapWrapper>

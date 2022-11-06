@@ -8,7 +8,6 @@ export const HeaderWrapper = styled.div`
   z-index: 99;
   right: 0;
   background: #ffffff;
-
 `
 
 export const Button = styled.div`
