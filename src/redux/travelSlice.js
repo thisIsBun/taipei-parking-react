@@ -11,8 +11,13 @@ const initialState = {
 
 export const getParkLocationAsync = createAsyncThunk('location/getLocationAsync',
   async () => {
-    const resByLocation = await axios.get('https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_alldesc.json')
-    return resByLocation.data.data.park
+    try {
+      const resByLocation = await axios.get('https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_alldesc.json')
+      console.log('getParkLocation api')
+      return resByLocation.data.data.park
+    } catch (error) {
+      console.error(error)
+    }
   }
 )
 

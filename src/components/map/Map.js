@@ -1,5 +1,4 @@
 import GoogleMapReact from 'google-map-react'
-import {API_KEY} from '../../api_key'
 import { MarkerWrapper, MapWrapper, Icon, Text } from './MapSetting'
 import mymarker from './mymarker.svg'
 import { useSelector } from 'react-redux';
@@ -10,9 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 
 
 function showModal() {
-
   const show = true
-
   return (
     <>
       <Modal show={show}>
@@ -33,13 +30,38 @@ function showModal() {
   );
 }
 
+function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee }) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      {renderTrigger && renderTrigger({ handleShow })}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>{name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p style={{fontWeight: '700', fontSize: '18px'}}>費用：{fee}</p>
+          <p style={{fontWeight: '700', fontSize: '18px'}}>可停車位(即時)：{availablecar ? availablecar : '沒有提供空位資訊'}</p>
+          <p>總共車位：{totalcar}</p>
+          <p>台北市行政區：{area}</p>
+          <p>地址：{address ? address : '沒有地址資訊'}</p>
+          <p>電話：{tel ? tel : 'N/A'}</p>
+          <p>營業時間：{serviceTime ? serviceTime : 'N/A'}</p>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+}
+
 export default function Map ({ renderMap, centerLocation}) {
   const myLocation = useSelector(state => state.location.myLocaition)
 
   const MyMarker = ({text}) =>(
     <MarkerWrapper>
       <Icon src={mymarker} />
-      {/* <Text>{text}</Text> */}
+      <Text>{text}</Text>
     </MarkerWrapper>
   )
 
@@ -86,9 +108,9 @@ export default function Map ({ renderMap, centerLocation}) {
     <MapWrapper>
       {/* GoogleMapReact是地圖本身*/}
       <GoogleMapReact
-        bootstrapURLKeys={{ key: API_KEY }}
+        bootstrapURLKeys={{ key: 'AIzaSyDSR5zK6jyX9HShMZ23DA97iMfChFT0pkg' }}
         defaultCenter={centerLocation}
-        defaultZoom={13}
+        defaultZoom={15}
         center={centerLocation}
       >
         <MyMarker
@@ -121,30 +143,4 @@ export default function Map ({ renderMap, centerLocation}) {
       </GoogleMapReact>
   </MapWrapper>
   )
-}
-
-function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee }) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  return (
-    <>
-      {renderTrigger && renderTrigger({ handleShow })}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>{name} {id}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>費用：{fee}</p>
-          <p>可停車位：{availablecar}</p>
-          <p>總共車位：{totalcar}</p>
-          <p>台北市行政區：{area}</p>
-          <p>地址：{address}</p>
-          <p>電話：{tel ? tel : 'N/A'}</p>
-          <p>營業時間：{serviceTime ? serviceTime : 'N/A'}</p>
-        </Modal.Body>
-      </Modal>
-    </>
-  );
 }

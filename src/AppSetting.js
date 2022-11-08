@@ -15,7 +15,6 @@ export const Button = styled.div`
   color: #000000;
   padding: 6px 10px;
   cursor: pointer;
-  // border-radius: 8px;
   font-weight: 500;
   font-size: 16px;
   width: 160px;

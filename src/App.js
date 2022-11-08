@@ -45,18 +45,19 @@ const App = () => {
       }
     });
   }
-
+  
   return(
     <>
       <HeaderWrapper className='d-flex align-items-center'>
-        <h1 className='mx-4 my-2'>台北停車圖鑑</h1>
-        <div className='d-flex mx-4'>
-          <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>顯示全部停車場</Button>
-          <Button onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>僅顯示有位停車場</Button>
+        <h1 className='mx-5 my-2'>台北停車圖鑑</h1>
+        <div className='d-flex mx-2'>
+          <Button htmlType="button" onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>顯示全部停車場</Button>
+          <Button htmlType="button" onClick={() => { setIsCheck(!isCheck) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>僅顯示有位停車場</Button>
         </div>
-        <div className='d-flex flex-column'>
-          <P className={isCheck ? "font-weight-bold" : "d-none"}>Marker 顏色越淺 = 剩越多停車位</P>
-          <P>更新時間：{updateTime}</P>
+        <Button className='my-2 mx-2 active' htmlType="button" onClick={() => window.location.reload(false)} style={{ borderRadius: '10px', width: "100px"}}>更新資料</Button>
+        <div className='d-flex flex-column mx-2'>
+          <P className={isCheck ? "" : "d-none"}>Marker顏色越淺：停車場的空位率越高</P>
+          <P>更新時間：{updateTime ? updateTime : '資料更新中，請稍等一下'}</P>
         </div>
       </HeaderWrapper>
 
