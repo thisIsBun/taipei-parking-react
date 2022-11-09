@@ -30,25 +30,33 @@ function showModal() {
   );
 }
 
-function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee }) {
+function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const myLocation = useSelector(state => state.location.myLocaition)
   return (
     <>
       {renderTrigger && renderTrigger({ handleShow })}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>{name}</Modal.Title>
+          <Modal.Title>
+            {name}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p style={{fontWeight: '700', fontSize: '18px'}}>費用：{fee}</p>
-          <p style={{fontWeight: '700', fontSize: '18px'}}>可停車位(即時)：{availablecar ? availablecar : '沒有提供空位資訊'}</p>
-          <p>總共車位：{totalcar}</p>
-          <p>台北市行政區：{area}</p>
-          <p>地址：{address ? address : '沒有地址資訊'}</p>
-          <p>電話：{tel ? tel : 'N/A'}</p>
-          <p>營業時間：{serviceTime ? serviceTime : 'N/A'}</p>
+          <>
+            <p style={{fontWeight: '700', fontSize: '18px'}}>費用：{fee}</p>
+            <p style={{fontWeight: '700', fontSize: '18px'}}>可停車位(即時)：{availablecar ? availablecar : '沒有提供空位資訊'}</p>
+            <p>總共車位：{totalcar}</p>
+            <p>台北市行政區：{area}</p>
+            <p>地址：{address ? address : '沒有地址資訊'}</p>
+            <p>電話：{tel ? tel : 'N/A'}</p>
+            <p>營業時間：{serviceTime ? serviceTime : 'N/A'}</p>
+          </>
+          <div className='d-flex flex-row-reverse'>
+            <a style={{fontWeight: '700', fontSize: '18px', textDecoration: 'none', }} href={`https://www.google.com/maps/dir/?api=1&origin=${myLocation.lat},${myLocation.lng}&destination=${lat},${lng}&travelmode=driving`}>Google Map 規劃路線</a>
+          </div>
         </Modal.Body>
       </Modal>
     </>
@@ -65,7 +73,7 @@ export default function Map ({ renderMap, centerLocation}) {
     </MarkerWrapper>
   )
 
-  const ParkingMarker = ({fullRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee}) =>(
+  const ParkingMarker = ({fullRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng}) =>(
 
     <MarkerWrapper
     onClick={showModal}
@@ -81,6 +89,8 @@ export default function Map ({ renderMap, centerLocation}) {
         address={address}
         tel={tel}
         fee={fee}
+        lat={lat}
+        lng={lng}
 
         renderTrigger={({ handleShow }) => (
         <svg 
