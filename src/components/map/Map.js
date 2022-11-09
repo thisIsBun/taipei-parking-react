@@ -109,7 +109,7 @@ export default function Map ({ renderMap, centerLocation}) {
       {/* GoogleMapReact是地圖本身*/}
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyDSR5zK6jyX9HShMZ23DA97iMfChFT0pkg' }}
-        defaultCenter={centerLocation}
+        // defaultCenter={centerLocation}
         defaultZoom={15}
         center={centerLocation}
       >
