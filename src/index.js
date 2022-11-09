@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { NoPage } from "./components/pages";
+// import { NoPage } from "./components/pages";
 
 
 ReactDOM.render(
@@ -15,7 +15,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="*" element={<NoPage />} />
+          {/* <Route path="*" element={<NoPage />} /> */}
         </Routes>
       </BrowserRouter>
     </Provider>
