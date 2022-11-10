@@ -23,18 +23,21 @@ react、react-redux、react-router-dom、axios、google-map-react、bootstrap、
 
 
 <h2>安裝指南</h2>
-1. 請先確認本機環境已經有安裝 Node.js，建議使用 nvm安裝 Node.js，並切換到 v16.16.0
-2. 在本機開啟終端機，輸入以下指令將此專案複製到本機：
+請先確認本機環境已經有安裝 Node.js，建議使用 nvm安裝 Node.js，並切換到 v16.16.0<br/>
+
+1. 在本機開啟終端機，輸入以下指令將此專案複製到本機：
    ```
    git clone https://github.com/thisIsBun/taipei-parking-react.git
    ```
-3. 終端機移動到專案資料夾(檔案名稱：taipei-parking-react)後，先輸入以下指令安裝套件：
+   
+2. 終端機移動到專案資料夾(檔案名稱：taipei-parking-react)後，再輸入以下指令安裝專案使用的 npm套件：
    
    ```
    npm install
    ```
       
-4. 再繼續輸入以下指令，完成執行就安裝完成了
+3. 再繼續輸入以下指令，指令完成執行後，專案可在本機運行了：
    ```
    npm start
    ``` 
+   
