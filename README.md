@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# 來台北拍洽 1.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是一個提供台北市停車場空位熱點圖的 app，希望增加開車使用者的視覺判斷，快速找到理想停車位。<br/>
+app demo：https://thisisbun.github.io/taipei-parking-react/
 
-## Available Scripts
 
-In the project directory, you can run:
+<h2>功能介紹</h2>
+- 自動定位裝置位置<br/>
+- 地圖畫面標記「目前位置」及「停車場」<br/>
+- 可用標記顏色判斷該停車場空位率 (越淺表示空位率越高)<br/>
+- 點擊停車場標記後，可看到該停車場詳細資訊(包含費率、空位數等)<br/>
+- 選定停車場後，可使用 google map導航<br/>
+<img width="1396" alt="image" src="https://user-images.githubusercontent.com/106903594/200975162-c179b356-21fa-449a-941d-5ab0ccff13c9.png">
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>開發工具</h2>
+後台資料：<br/>
+- 政府資料開放平臺 > 台北市停車場資訊(https://data.gov.tw/dataset/128435)<br/>
+- google map api<br/>
+<br/>
+使用套件：<br/>
+react、react-redux、react-router-dom、axios、google-map-react、bootstrap、styled-components、twd97-to-latlng
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h2>安裝指南</h2>
+1. 請先確認本機環境已經有安裝 Node.js，建議使用 nvm安裝 Node.js，並切換到 v16.16.0
+2. 在本機開啟終端機，輸入以下指令將此專案複製到本機：
+   ```
+   git clone https://github.com/thisIsBun/taipei-parking-react.git
+   ```
+3. 終端機移動到專案資料夾(檔案名稱：taipei-parking-react)後，先輸入以下指令安裝套件：
+   
+   ```
+   npm install
+   ```
+      
+4. 再繼續輸入以下指令，完成執行就安裝完成了
+   ```
+   npm start
+   ``` 
