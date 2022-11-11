@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-    myLocaition: { lat: 0, lng: 0 },
+    myLocation: { lat: 0, lng: 0 },
     location: [],
     locationAvailable: [],
     locationId: [],
@@ -13,7 +13,6 @@ export const getParkLocationAsync = createAsyncThunk('location/getLocationAsync'
   async () => {
     try {
       const resByLocation = await axios.get('https://tcgbusfs.blob.core.windows.net/blobtcmsv/TCMSV_alldesc.json')
-      console.log('getParkLocation api')
       return resByLocation.data.data.park
     } catch (error) {
       console.error(error)
@@ -41,7 +40,7 @@ export const travelSlice = createSlice({
         state.location.push(action.payload)
     },
     setLocation: (state, action) => {
-        state.myLocaition = { lat: action.payload.lat, lng: action.payload.lng };
+        state.myLocation = { lat: action.payload.lat, lng: action.payload.lng };
     },
   },
   extraReducers: {

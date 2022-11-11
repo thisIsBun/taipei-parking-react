@@ -3,12 +3,14 @@ import Map from './components/map'
 import { HeaderWrapper, H1, Button, MapWrapper, P} from './AppSetting'
 import { useSelector, useDispatch } from 'react-redux';
 import { setLocation, getParkLocationAsync, getParkIdAsync } from './redux/travelSlice'
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const App = () => {
   
   const [centerLocation, setCenterLocation] = useState()
   const [isCheck, setIsCheck] = useState(true)
-  const dispatch = useDispatch() //用 useDispatch產生 dispatch方法
+  const dispatch = useDispatch()
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -18,12 +20,10 @@ const App = () => {
     dispatch(getParkIdAsync())
   }, [dispatch])
 
-  const myLocaition = useSelector(state => state.location.myLocaition)
+  const myLocation = useSelector(state => state.location.myLocation)
   const parkLocation = useSelector(state => state.location.location[0])
   const locationAvailable = useSelector(state => state.location.locationAvailable[0])
   const updateTime = useSelector(state => state.location.updateTime)
-
-  console.log(updateTime)
 
   // 目前有停車位的停車場
   let ParkAvailable = []
@@ -49,7 +49,7 @@ const App = () => {
   return(
     <>
       <HeaderWrapper className='d-flex align-items-center'>
-        <H1 className='my-2'>來台北拍洽</H1>
+        <H1 className='my-2'>來台北趴掐</H1>
         <div className='d-flex'>
           <Button htmlType="button" onClick={() => { setIsCheck(false) }} className={isCheck ? '' : 'active'} style={{ borderRadius: '10px 0 0 10px'}}>全部停車場</Button>
           <Button htmlType="button" onClick={() => { setIsCheck(true) }} className={isCheck ? 'active' : ''} style={{ borderRadius: '0 10px 10px 0'}}>有空位停車場</Button>
@@ -62,13 +62,22 @@ const App = () => {
       </HeaderWrapper>
 
       <MapWrapper>
-        {myLocaition.lng !== 0 && 
-        <Map 
+        {myLocation.lng !== 0 && 
+        <Map
+        myLocation={myLocation}
         renderMap={isCheck ? ParkAvailable : parkLocation} 
-        centerLocation={centerLocation ? centerLocation : myLocaition} />}
+        centerLocation={centerLocation ? centerLocation : myLocation} />}
       </MapWrapper>
     </>
   );
 }
 
-export default App;
+const ReduxProvider = () => {
+    return(
+        <Provider store={store}>
+            <App />
+        </Provider>
+    )
+}
+
+export default ReduxProvider;

@@ -1,44 +1,22 @@
 import GoogleMapReact from 'google-map-react'
 import { MarkerWrapper, MapWrapper, Icon, Text } from './MapSetting'
 import mymarker from './mymarker.svg'
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import twd97tolatlng from 'twd97-to-latlng'
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+// import store from "../../redux/store";
 
 
-function showModal() {
-  const show = true
-  return (
-    <>
-      <Modal show={show}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary">
-            Close
-          </Button>
-          <Button variant="primary">
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
-
-function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng }) {
+function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng, myLocation }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const myLocation = useSelector(state => state.location.myLocaition)
+  // const myLocation = useSelector(state => state.location.myLocation)
   return (
     <>
       {renderTrigger && renderTrigger({ handleShow })}
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} data-testid="ParkingModal">
         <Modal.Header>
           <Modal.Title>
             {name}
@@ -63,8 +41,8 @@ function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availabl
   );
 }
 
-export default function Map ({ renderMap, centerLocation}) {
-  const myLocation = useSelector(state => state.location.myLocaition)
+export default function Map ({ renderMap, centerLocation, myLocation}) {
+  // const myLocation = useSelector(state => state.location.myLocaition)
 
   const MyMarker = ({text}) =>(
     <MarkerWrapper>
@@ -73,10 +51,9 @@ export default function Map ({ renderMap, centerLocation}) {
     </MarkerWrapper>
   )
 
-  const ParkingMarker = ({fullRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng}) =>(
+  const ParkingMarker = ({fullRation, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng, myLocation}) =>(
 
     <MarkerWrapper
-    onClick={showModal}
     style={{width: '25px', height: '25px', cursor: 'pointer'}} 
     >
       <ParkingModal
@@ -91,6 +68,7 @@ export default function Map ({ renderMap, centerLocation}) {
         fee={fee}
         lat={lat}
         lng={lng}
+        myLocation={myLocation}
 
         renderTrigger={({ handleShow }) => (
         <svg 
@@ -109,8 +87,6 @@ export default function Map ({ renderMap, centerLocation}) {
         </svg>
         )}
       />
-      {/* <Icon src={parkingmarker} /> */}
-      {/* <Text>{id}</Text> */}
     </MarkerWrapper>
   )
 
@@ -124,8 +100,8 @@ export default function Map ({ renderMap, centerLocation}) {
         center={centerLocation}
       >
         <MyMarker
-          lat={myLocation.lat}
           lng={myLocation.lng}
+          lat={myLocation.lat}
           text="我的位置"
         />
 
@@ -147,6 +123,7 @@ export default function Map ({ renderMap, centerLocation}) {
               totalcar={station.totalcar}
               availablecar={station.availablecar}
               payex={station.payex}
+              myLocation={myLocation}
             />
           )
         })}
