@@ -1,12 +1,10 @@
 import GoogleMapReact from 'google-map-react'
 import { MarkerWrapper, MapWrapper, Icon, Text } from './MapSetting'
 import mymarker from './mymarker.svg'
-// import { useSelector } from 'react-redux';
 import twd97tolatlng from 'twd97-to-latlng'
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-// import store from "../../redux/store";
-
+import API_KEY from './apiKey';
 
 function ParkingModal({ renderTrigger, id, name, serviceTime, totalcar, availablecar, area, address, tel, fee, lat, lng, myLocation }) {
   const [show, setShow] = useState(false);
@@ -94,7 +92,7 @@ export default function Map ({ renderMap, centerLocation, myLocation}) {
     <MapWrapper>
       {/* GoogleMapReact是地圖本身*/}
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyAlC4jEqG8r-KvoIUJ_nT75fDGg4ytZRow" }}
+        bootstrapURLKeys={{ key: API_KEY }}
         // defaultCenter={centerLocation}
         defaultZoom={15}
         center={centerLocation}
