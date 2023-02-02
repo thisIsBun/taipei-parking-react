@@ -94,19 +94,15 @@ export default function Map ({ renderMap, centerLocation, myLocation}) {
     <MapWrapper>
       {/* GoogleMapReact是地圖本身*/}
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyDSR5zK6jyX9HShMZ23DA97iMfChFT0pkg' }}
+        bootstrapURLKeys={{ key: "AIzaSyAlC4jEqG8r-KvoIUJ_nT75fDGg4ytZRow" }}
         // defaultCenter={centerLocation}
         defaultZoom={15}
         center={centerLocation}
       >
-        <MyMarker
-          lng={myLocation.lng}
-          lat={myLocation.lat}
-          text="我的位置"
-        />
+        <MyMarker lng={myLocation.lng} lat={myLocation.lat} text="我的位置" />
 
         {renderMap?.map((station) => {
-          const location = twd97tolatlng(station.tw97x, station.tw97y)
+          const location = twd97tolatlng(station.tw97x, station.tw97y);
           return (
             <ParkingMarker
               lat={location.lat}
@@ -125,9 +121,9 @@ export default function Map ({ renderMap, centerLocation, myLocation}) {
               payex={station.payex}
               myLocation={myLocation}
             />
-          )
+          );
         })}
       </GoogleMapReact>
-  </MapWrapper>
-  )
+    </MapWrapper>
+  );
 }

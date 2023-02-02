@@ -8,6 +8,7 @@ import store from "./redux/store";
 
 const App = () => {
   
+  // eslint-disable-next-line no-unused-vars
   const [centerLocation, setCenterLocation] = useState()
   const [isCheck, setIsCheck] = useState(true)
   const dispatch = useDispatch()
