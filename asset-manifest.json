@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/taipei-parking-react/static/js/main.45ec88fe.js",
+    "main.js": "/taipei-parking-react/static/js/main.da8e10da.js",
     "static/js/787.ba6af390.chunk.js": "/taipei-parking-react/static/js/787.ba6af390.chunk.js",
     "index.html": "/taipei-parking-react/index.html",
     "static/media/mymarker.svg": "/taipei-parking-react/static/media/mymarker.ea6e0a595b465049a4797efd4c906c25.svg",
-    "main.45ec88fe.js.map": "/taipei-parking-react/static/js/main.45ec88fe.js.map",
+    "main.da8e10da.js.map": "/taipei-parking-react/static/js/main.da8e10da.js.map",
     "787.ba6af390.chunk.js.map": "/taipei-parking-react/static/js/787.ba6af390.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.45ec88fe.js"
+    "static/js/main.da8e10da.js"
   ]
 }
